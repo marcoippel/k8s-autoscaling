@@ -3,7 +3,7 @@ https://kind.sigs.k8s.io/
 
 ### Create KIND Cluster
 ```bash
-cat <<EOF | kind create cluster --config=-
+cat <<EOF | kind create cluster --name=autoscaling --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
