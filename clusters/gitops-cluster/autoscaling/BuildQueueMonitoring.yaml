@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-app
+  name: BuildQueueMonitoring
   labels:
-    app: sample-app
+    app: BuildQueueMonitoring
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample-app
+      app: BuildQueueMonitoring
   template:
     metadata:
       labels:
-        app: sample-app
+        app: BuildQueueMonitoring
     spec:
       containers:
-      - image: luxas/autoscale-demo:v0.1.2
+      - image: marcoippel/buildqueuemonitoring:1.0.0-94ec49f
         name: metrics-provider
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 80
