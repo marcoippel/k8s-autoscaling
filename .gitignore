@@ -3,3 +3,5 @@
 ################################################################################
 
 /src/BuildQueueMonitoring/bin/Debug/netcoreapp3.1
+/src/BuildQueueMonitoring/obj
+/src/BuildQueueMonitoring/.vs/BuildQueueMonitoring
