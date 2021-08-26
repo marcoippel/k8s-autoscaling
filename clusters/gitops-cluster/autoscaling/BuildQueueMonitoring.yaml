@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: BuildQueueMonitoring
+  name: buildqueuemonitoring
   labels:
-    app: BuildQueueMonitoring
+    app: buildqueuemonitoring
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: BuildQueueMonitoring
+      app: buildqueuemonitoring
   template:
     metadata:
       labels:
-        app: BuildQueueMonitoring
+        app: buildqueuemonitoring
     spec:
       containers:
       - image: marcoippel/buildqueuemonitoring:1.0.0-94ec49f
