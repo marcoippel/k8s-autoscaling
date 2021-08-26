@@ -1,0 +1,42 @@
+name: 'Build docker image'
+description: 'Build the docker image and pushes it to dockerhub'
+inputs:
+  docker-username:
+    description: 'Dockerhub username'
+    required: true
+  docker-password:
+    description: 'Dockerhub password'
+    required: true
+  docker-image-repo:
+    description: 'The tag for the docker image'
+    required: true
+  docker-image-version:
+    description: 'The version for the docker image'
+    required: true
+  working-directory:
+    description: 'The working directory'
+    required: true
+runs:
+  using: "composite"
+  steps:
+
+  - run: |
+      echo "tag=${{ inputs.docker-image-version }}-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    shell: bash
+    working-directory: ${{ inputs.working-directory }}
+
+  - run: git fetch --unshallow
+    shell: bash
+    working-directory: ${{ inputs.working-directory }}
+
+  - run: docker login -u ${{ inputs.docker-username }} -p ${{ inputs.docker-password }}
+    shell: bash
+    working-directory: ${{ inputs.working-directory }}
+
+  - run: docker build -t ${{ inputs.docker-image-repo }}:${{ env.tag }} .
+    shell: bash
+    working-directory: ${{ inputs.working-directory }}
+
+  - run: docker push ${{ inputs.docker-image-repo }}:${{ env.tag }}
+    shell: bash
+    working-directory: ${{ inputs.working-directory }}

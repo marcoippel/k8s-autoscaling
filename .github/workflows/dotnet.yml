@@ -8,18 +8,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    env:
+      project: BuildQueueMonitoring
+      projectLower: buildqueuemonitoring
+    defaults:
+      run:
+        working-directory: ./src/BuildQueueMonitoring
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Build and push image
+        uses: marcoippel/k8s-autoscaling/.github/actions/build-docker-image@master
+        with:
+          docker-username: ${{ secrets.dockerhub_username }}
+          docker-password: ${{ secrets.dockerhub_password }}
+          docker-image-repo: 'marcoippel/${{env.projectLower}}'
+          working-directory: './src/${{env.project}}'
+          docker-image-version: '1.0.0'

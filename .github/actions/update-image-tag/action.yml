@@ -1,0 +1,44 @@
+name: 'Update imagetag'
+description: 'Update the image tag of the file in the infra repo'
+inputs:
+  image-selector:
+    description: 'ImageSelector'
+    required: true
+  image-tag:
+    description: 'The tag to set'
+    required: true
+  working-directory:
+    description: 'The working directory'
+    required: true
+  emailaddress:
+    description: 'The emailaddress off the user'
+    required: true
+runs:
+  using: "composite"
+  steps:
+  - run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+    shell: bash
+    working-directory: /home/runner/work
+
+  - run: kustomize edit set image ${{ inputs.image-selector }}:${{ inputs.image-tag }}
+    working-directory: ${{ inputs.working-directory }}
+    shell: bash
+
+  - run: /usr/bin/git add .
+    shell: bash
+
+  - run: |
+      /usr/bin/git config user.email "$EMAIL"
+      /usr/bin/git config user.name "$GITHUB_ACTOR"
+    env:
+      EMAIL: ${{ inputs.emailaddress }}
+    shell: bash
+
+  - run: /usr/bin/git commit -m "Set dev image tag to short sha"
+    shell: bash
+
+  - run: /usr/bin/git pull
+    shell: bash
+
+  - run: /usr/bin/git push
+    shell: bash
