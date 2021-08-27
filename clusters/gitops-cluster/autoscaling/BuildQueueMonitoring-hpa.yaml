@@ -15,10 +15,15 @@ spec:
   metrics:
   # use a "Pods" metric, which takes the average of the
   # given metric across all pods controlled by the autoscaling target
-  - type: Pods
-    pods:
-      # use the metric that you used above: pods/http_requests
+  # - type: Pods
+  #   pods:
+  #     # use the metric that you used above: pods/http_requests
+  #     metricName: jobs_in_queue_total
+  #     # target 500 milli-requests per second,
+  #     # which is 1 request every two seconds
+  #     targetAverageValue: 300m
+
+  - type: External
+    external:
       metricName: jobs_in_queue_total
-      # target 500 milli-requests per second,
-      # which is 1 request every two seconds
-      targetAverageValue: 300m
+      targetAverageValue: 30
