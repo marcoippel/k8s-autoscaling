@@ -27,4 +27,4 @@ jobs:
           docker-password: ${{ secrets.dockerhub_password }}
           docker-image-repo: 'marcoippel/${{env.projectLower}}'
           working-directory: './src/${{env.project}}'
-          docker-image-version: '1.0.0'
+          docker-image-version: '1.0.1'
