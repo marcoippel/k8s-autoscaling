@@ -75,3 +75,5 @@ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get
 
 # start a proxy to access the kubernetes dashboard
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+
+/FakeQueue?number=10
