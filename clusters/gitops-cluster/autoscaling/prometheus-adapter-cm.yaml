@@ -7,6 +7,9 @@ data:
         overrides:
           kubernetes_namespace: {resource: "namespace"}
           kubernetes_pod_name: {resource: "pod"}
+      name:
+        matches: "jobs_in_queue_total"
+        as: "jobs_in_queue_total"
       metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
 kind: ConfigMap
 metadata:
