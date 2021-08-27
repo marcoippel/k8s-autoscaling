@@ -15,7 +15,7 @@ spec:
         app: buildqueuemonitoring
     spec:
       containers:
-      - image: marcoippel/buildqueuemonitoring:1.0.1-0dee976
+      - image: marcoippel/buildqueuemonitoring:1.0.1-002dec8
         name: metrics-provider
         ports:
         - name: http
