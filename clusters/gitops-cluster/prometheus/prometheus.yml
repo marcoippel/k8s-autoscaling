@@ -30,7 +30,7 @@ scrape_configs:
   metrics_path: /metrics/cadvisor
 
 
-- job_name: sample-app
+- job_name: buildqueuemonitoring
   scrape_interval: 5s
   kubernetes_sd_configs:
   - role: pod
