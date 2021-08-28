@@ -4,4 +4,3 @@ namespace: monitoring
 resources:
 - AzureDevopsPat_secret.yaml
 - BuildAgent_Deployment.yaml
-- ns.yaml
