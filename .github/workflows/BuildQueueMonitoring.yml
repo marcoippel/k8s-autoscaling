@@ -3,6 +3,10 @@ name: BuildQueueMonitoring
 on:
   push:
     branches: [ main ]
+    paths:
+      - "src/BuildQueueMonitoring/**"
+      - ".github/actions/**"
+      - ".github/workflows/BuildQueueMonitoring.yml" 
   pull_request:
     branches: [ main ]
 

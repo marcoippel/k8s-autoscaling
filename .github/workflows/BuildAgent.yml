@@ -3,6 +3,10 @@ name: BuildAgent
 on:
   push:
     branches: [ main ]
+    paths:
+      - "src/BuildAgent/**"
+      - ".github/actions/**"
+      - ".github/workflows/BuildAgent.yml" 
   pull_request:
     branches: [ main ]
 
