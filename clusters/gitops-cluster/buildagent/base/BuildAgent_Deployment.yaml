@@ -20,14 +20,14 @@ spec:
     spec:
       containers:
       - name: azuredevops-buildagent
-        image: topaasts.azurecr.io/azuredevops-buildagent:latest
+        image: marcoippel/buildagent
         env:
           - name: AZP_URL
-            value: {{ .Values.env.AZP_URL | quote}}
+            value: "https://dev.azure.com/Marcoippel/"
           - name: AZP_POOL
-            value: {{ .Values.env.AZP_POOL | quote}}
+            value: "kubernetes-demo"
           - name: AZP_AGENT_NAME
-            value: {{ .Values.env.AZP_AGENT_NAME | quote}}
+            value: "k8s-agent"
           - name: AZP_TOKEN
             valueFrom:
               secretKeyRef:
