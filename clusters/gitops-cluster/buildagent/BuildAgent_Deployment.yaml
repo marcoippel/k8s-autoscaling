@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: azuredevops-buildagent
-        image: marcoippel/buildagent
+        image: marcoippel/buildagent:1.0.0-c641510
         env:
           - name: AZP_URL
             value: "https://dev.azure.com/Marcoippel/"

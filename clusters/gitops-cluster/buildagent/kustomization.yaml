@@ -5,6 +5,3 @@ resources:
 - AzureDevopsPat_secret.yaml
 - BuildAgent_Deployment.yaml
 - ns.yaml
-images:
-- name: marcoippel/buildagent
-  newTag: 1.0.0-c641510
