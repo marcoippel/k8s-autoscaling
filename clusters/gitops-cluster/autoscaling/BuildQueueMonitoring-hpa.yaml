@@ -8,7 +8,7 @@ spec:
     # you created above
     apiVersion: apps/v1
     kind: Deployment
-    name: azdevops-deployment
+    name: azdevops-agent
   # autoscale between 1 and 10 replicas
   minReplicas: 1
   maxReplicas: 10
@@ -18,5 +18,5 @@ spec:
   - type: Pods
     pods:
       metricName: jobs_in_queue_total
-      targetAverageValue: 20
+      targetAverageValue: "30"
 
