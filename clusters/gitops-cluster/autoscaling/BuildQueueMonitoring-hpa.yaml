@@ -9,6 +9,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: buildqueuemonitoring
+  
   # autoscale between 1 and 10 replicas
   minReplicas: 1
   maxReplicas: 10
@@ -18,5 +19,5 @@ spec:
   - type: Pods
     pods:
       metricName: jobs_in_queue_total
-      targetAverageValue: 30
+      targetAverageValue: 30m
 
