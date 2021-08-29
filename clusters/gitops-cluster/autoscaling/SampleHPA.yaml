@@ -17,5 +17,5 @@ spec:
       target:
         apiVersion: v1
         kind: Service
-        name: rabbitmqs # This is my rabbitmq service name
+        name: buildqueuemonitoring # This is my rabbitmq service name
       targetValue: 2000

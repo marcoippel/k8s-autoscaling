@@ -6,3 +6,4 @@ resources:
 - BuildQueueMonitoring.yaml
 - BuildQueueMonitoring-hpa.yaml
 - prometheus-adapter-cm.yaml
+- SampleHPA.yaml
