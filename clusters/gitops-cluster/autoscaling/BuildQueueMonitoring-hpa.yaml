@@ -4,8 +4,6 @@ metadata:
   name: buildqueuemonitoring
 spec:
   scaleTargetRef:
-    # point the HPA at the sample application
-    # you created above
     apiVersion: apps/v1
     kind: Deployment
     name: azdevops-agent

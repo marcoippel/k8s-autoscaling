@@ -1,5 +1,6 @@
 global:
   scrape_interval: 10s
+  query_log_file: /prometheus/query.log
 scrape_configs:
 
 # Kubernetes API
