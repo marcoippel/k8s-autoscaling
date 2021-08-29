@@ -10,9 +10,11 @@ data:
       name:
         matches: "jobs_in_queue_total"
         as: "jobs_in_queue_total"
-      metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+      metricsQuery: 'sum(rate(<<.Series>>{kubernetes_namespace="monitoring",kubernetes_pod_name=~"buildqueuemonitoring-.+"}[2m])) by (<<.GroupBy>>)'
 kind: ConfigMap
 metadata:
   labels:
     app: prometheus-adapter
   name: prometheus-adapter
+
+# sum(rate(jobs_in_queue_total{kubernetes_namespace="monitoring",kubernetes_pod_name="buildqueuemonitoring-d7bb6596b-6dqs6"}[2m]))
