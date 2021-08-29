@@ -2,14 +2,13 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: worker-hpa
-  namespace: production
 spec:
   maxReplicas: 120
   minReplicas: 30
   scaleTargetRef:
-    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
     kind: Deployment
-    name: hpa-worker-foo
+    name: azdevops-agent
   metrics:
   - type: Object
     object:
