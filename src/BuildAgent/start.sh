@@ -73,7 +73,7 @@ source ./env.sh
 print_header "3. Configuring Azure Pipelines agent..."
 
 ./config.sh --unattended \
-  --agent "${AZP_AGENT_NAME:-date +%s}" \
+  --agent "${AZP_AGENT_NAME}$(date +%s)" \
   --url "$AZP_URL" \
   --auth PAT \
   --token $(cat "$AZP_TOKEN_FILE") \
