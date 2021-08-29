@@ -15,6 +15,6 @@ spec:
       metricName: jobs_in_queue_total
       target:
         apiVersion: v1
-        kind: Service
+        kind: Pod
         name: buildqueuemonitoring # This is my rabbitmq service name
       targetValue: 20
