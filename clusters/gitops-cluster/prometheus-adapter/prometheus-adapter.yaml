@@ -18,5 +18,5 @@ spec:
       url: http://prometheus.monitoring.svc
     rules:
       existing: prometheus-adapter
-      external: prometheus-adapter-external
-      default: false
+      # external: prometheus-adapter-external
+      # default: false
