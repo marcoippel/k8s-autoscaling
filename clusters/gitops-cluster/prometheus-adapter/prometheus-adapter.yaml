@@ -17,6 +17,14 @@ spec:
     prometheus:
       url: http://prometheus.monitoring.svc
     rules:
-      # existing: prometheus-adapter
-      external: prometheus-adapter-external
-      default: false
+      external:
+      - seriesQuery: '{__name__=~"^my_queue_len$"}'
+        resources:
+          #template: <<.Resource>>
+          overrides:
+            kubernetes_namespace: {resource: "namespace"}
+            kubernetes_pod_name: {resource: "pod"}
+        name:
+          matches: ""
+          as: "my_queue"
+        metricsQuery: sum(my_queue_len)

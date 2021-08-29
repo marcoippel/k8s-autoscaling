@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: worker-hpa
+  namespace: production
+spec:
+  maxReplicas: 120
+  minReplicas: 30
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: hpa-worker-foo
+  metrics:
+  - type: Object
+    object:
+      metricName: rabbitmq_queue_messages_foo
+      target:
+        apiVersion: v1
+        kind: Service
+        name: rabbitmqs # This is my rabbitmq service name
+      targetValue: 2000
