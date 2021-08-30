@@ -17,4 +17,4 @@ spec:
   - type: External
     external:
       metricName: jobs_in_queue_total
-      targetValue: 30
+      targetValue: 30m
