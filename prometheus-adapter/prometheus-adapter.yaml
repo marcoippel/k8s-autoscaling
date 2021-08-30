@@ -17,4 +17,4 @@ spec:
     prometheus:
       url: http://prometheus.monitoring.svc
     rules:
-      existing: prometheus-adapter
+      existing: my-release-prometheus-adapter
