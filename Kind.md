@@ -77,3 +77,5 @@ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
 /FakeQueue?number=10
+
+helm install my-release prometheus-community/prometheus-adapter -f values.yaml -n monitoring
