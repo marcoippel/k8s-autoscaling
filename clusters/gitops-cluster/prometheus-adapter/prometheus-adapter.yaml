@@ -28,4 +28,4 @@ spec:
         name:
           matches: "jobs_in_queue_total"
           as: "jobs_in_queue_total"
-        metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+        metricsQuery: '<<.Series>>{<<.LabelMatchers>>}[2m]'
