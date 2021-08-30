@@ -18,6 +18,7 @@ spec:
       url: http://prometheus.monitoring.svc
       port: 9090
     rules:
+      default: false
       external:
       - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
         resources:
