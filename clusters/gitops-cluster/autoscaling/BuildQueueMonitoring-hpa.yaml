@@ -14,10 +14,7 @@ spec:
   metrics:
   # use a "Pods" metric, which takes the average of the
   # given metric across all pods controlled by the autoscaling target
-  - type: External
-    external:
+  - type: Pods
+    pods:
       metricName: jobs_in_queue_total
-      targetValue: 10
-
-
-
+      targetAverageValue: 30m
