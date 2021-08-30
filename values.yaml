@@ -1,6 +1,6 @@
 prometheus:
-  url: http://prometheus-server.default.svc
-  port: 80
+  url: http://prometheus.monitoring.svc
+  port: 9090
 rules:
   external:
   - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
