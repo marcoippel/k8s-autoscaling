@@ -16,5 +16,15 @@ spec:
   values:
     prometheus:
       url: http://prometheus.monitoring.svc
+      port: 9090
     rules:
-      existing: my-release-prometheus-adapter
+      external:
+      - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
+        resources:
+          overrides:
+            kubernetes_namespace: {resource: "namespace"}
+            kubernetes_pod_name: {resource: "pod"}
+        name:
+          matches: "jobs_in_queue_total"
+          as: "jobs_in_queue_total"
+        metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
