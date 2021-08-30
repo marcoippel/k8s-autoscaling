@@ -5,5 +5,5 @@ resources:
 - BuildQueueMonitoring-service.yaml
 - BuildQueueMonitoring.yaml
 - BuildQueueMonitoring-hpa.yaml
-- prometheus-adapter-cm.yaml
-- my-release-prometheus-adapter.yaml
+# - prometheus-adapter-cm.yaml
+# - my-release-prometheus-adapter.yaml
