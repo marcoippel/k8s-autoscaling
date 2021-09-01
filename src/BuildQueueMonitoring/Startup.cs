@@ -1,3 +1,4 @@
+using BuildQueueMonitoring.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -39,9 +40,11 @@ namespace BuildQueueMonitoring
 
             app.UseEndpoints(endpoints =>
             {
+                app.UsePrometheusMiddleware();
                 endpoints.MapMetrics();
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
