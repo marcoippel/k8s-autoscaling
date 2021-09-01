@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "metrics",
       "environmentVariables": {
-        "ADO_PAT": "76z2qwf5l2743brflpz42uzhxwmxgkxih3rklzsnt5g5ft6tdkpa",
+        "ADO_PAT": "",
         "ADO_ORGANIZATION": "marcoippel",
         "ADO_POOLNAME": "kubernetes-demo",
         "ASPNETCORE_ENVIRONMENT": "Development",
