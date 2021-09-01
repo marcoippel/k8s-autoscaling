@@ -1,5 +1,4 @@
-﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -8,23 +7,28 @@
       "sslPort": 44391
     }
   },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "metrics",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ADO_PAT": "76z2qwf5l2743brflpz42uzhxwmxgkxih3rklzsnt5g5ft6tdkpa",
+        "ADO_ORGANIZATION": "marcoippel",
+        "ADO_POOLNAME": "kubernetes-demo",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ADO_URL": "https://dev.azure.com"
       }
     },
     "BuildQueueMonitoring": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "metrics",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }
