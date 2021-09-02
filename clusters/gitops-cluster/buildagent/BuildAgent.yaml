@@ -18,6 +18,13 @@ spec:
       containers:
       - name: azuredevops-buildagent
         image: marcoippel/buildagent:1.0.0-53d8afa
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
         env:
           - name: AZP_URL
             value: "https://dev.azure.com/Marcoippel/"
