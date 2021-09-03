@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  releaseName: prometheus
+  chart:
+    spec:
+      chart: prometheus
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus
+        namespace: flux-system
+  interval: 5m
+  values:
+    alertmanager:
+      enabled: false
+    kubeStateMetrics:
+      enabled: false
+    nodeExporter:
+      enabled: false
+    pushgateway:
+      enabled: false
+    extraScrapeConfigs: |
+      - job_name: 'buildqueuemonitoring'
+        metrics_path: /metrics
+        static_configs:
+          - targets: ['buildqueuemonitoring.monitoring.svc.cluster.local:80']
+        relabel_configs:
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_namespace
+          target_label: kubernetes_namespace
+        - action: replace
+          source_labels:
+          - __meta_kubernetes_pod_name
+          target_label: kubernetes_pod_name
