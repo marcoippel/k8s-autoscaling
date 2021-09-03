@@ -16,7 +16,6 @@ spec:
   values:
     prometheus:
       url: http://prometheus.monitoring.svc
-      port: 9090
     rules:
       default: false
       external:
