@@ -80,7 +80,9 @@ http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kube
 
 helm upgrade --install my-release prometheus-community/prometheus-adapter -f values.yaml -n monitoring
 
-helm upgrade --install prometheus-test prometheus-community/prometheus -f prometheus-values.yaml
+helm upgrade --install prometheus-test prometheus-community/prometheus -f prometheus-values.yaml -n monitoring
 
 
 buildqueuemonitoring.monitoring.svc.cluster.local:80
+
+prometheus-test-server.monitoring.svc.cluster.local
