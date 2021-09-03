@@ -32,7 +32,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: azuredevops-pat
-              key: AZP_TOKEN 
+              key: AZP_TOKEN
         - name: ADO_ORGANIZATION
           value: marcoippel
         - name: ADO_POOLNAME
