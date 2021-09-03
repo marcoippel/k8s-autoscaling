@@ -86,3 +86,5 @@ helm upgrade --install prometheus-test prometheus-community/prometheus -f promet
 buildqueuemonitoring.monitoring.svc.cluster.local:80
 
 prometheus-test-server.monitoring.svc.cluster.local
+
+k exec -it prometheus-server-766649cb7-lgc8p -c prometheus-server /bin/sh
