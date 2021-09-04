@@ -15,7 +15,8 @@ spec:
   interval: 5m
   values:
     prometheus:
-      url: http://prometheus.monitoring.svc
+      url: http://prometheus.monitoring.svc.cluster.local
+      port: 80
     rules:
       default: false
       external:
