@@ -15,17 +15,17 @@ spec:
   interval: 5m
   values:
     prometheus:
-      url: http://prometheus.monitoring.svc
+      url: http://prometheus-server.monitoring.svc
       port: 80
     rules:
       default: false
       external:
       - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
-        # resources:
-        #   overrides:
-        #     kubernetes_namespace: {resource: "namespace"}
-        #     kubernetes_pod_name: {resource: "pod"}
+        resources:
+          overrides:
+            kubernetes_namespace: {resource: "namespace"}
+            kubernetes_pod_name: {resource: "pod"}
         name:
           matches: "jobs_in_queue_total"
           as: "jobs_in_queue_total"
-        metricsQuery: 'ceil(sum(avg_over_time(<<.Series>>[2m])))'
+        metricsQuery: 'ceil(sum(avg_over_time(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>))'
