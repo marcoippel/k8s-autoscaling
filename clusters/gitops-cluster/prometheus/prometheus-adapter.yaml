@@ -20,7 +20,7 @@ spec:
     rules:
       default: false
       external:
-      - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!="",kubernetes_pod_name!=""}'
+      - seriesQuery: 'jobs_in_queue_total'
         # resources:
         #   overrides:
         #     kubernetes_namespace: {resource: "namespace"}

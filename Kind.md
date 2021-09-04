@@ -88,3 +88,5 @@ buildqueuemonitoring.monitoring.svc.cluster.local:80
 prometheus-test-server.monitoring.svc.cluster.local
 
 k exec -it prometheus-server-766649cb7-lgc8p -c prometheus-server /bin/sh
+
+http://prometheus.monitoring.svc:80/api/v1/series?match%5B%5D=jobs_in_queue_total%7Bkubernetes_namespace%21%3D%22%22%2Ckubernetes_pod_name%21%3D%22%22%7D&start=1630756921.99
