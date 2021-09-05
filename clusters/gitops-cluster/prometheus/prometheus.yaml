@@ -23,10 +23,13 @@ spec:
     pushgateway:
       enabled: false
     extraScrapeConfigs: |
-      - job_name: 'buildqueuemonitoring'
-        metrics_path: /metrics
+      - job_name: buildqueuemonitoring
+        scrape_interval: 30s
+        kubernetes_sd_configs:
+        - role: pod
         static_configs:
-          - targets: ['buildqueuemonitoring.monitoring.svc.cluster.local:80']
+          - targets: ['buildqueuemonitoring:80']
+        scheme: http
         relabel_configs:
         - action: replace
           source_labels:
