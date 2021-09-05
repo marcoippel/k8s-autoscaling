@@ -20,8 +20,11 @@ spec:
     rules:
       default: false
       external:
-      - seriesQuery: 'jobs_in_queue_total{job!=""}'
+      - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!=""}'
+        resources:
+          overrides:
+            kubernetes_namespace: {resource: "namespace"}
         name:
           matches: "jobs_in_queue_total"
           as: "jobs_in_queue_total"
-        metricsQuery: 'ceil(sum(avg_over_time(<<.Series>>[2m])))'
+        metricsQuery: 'ceil(sum(avg_over_time(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>))'
