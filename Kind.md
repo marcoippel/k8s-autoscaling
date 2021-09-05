@@ -24,7 +24,6 @@ nodes:
 EOF
 ```
 
-
 ### Add github credentials as env vars
 ``` bash
 export GITHUB_TOKEN= \
@@ -76,17 +75,5 @@ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get
 # start a proxy to access the kubernetes dashboard
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
-/FakeQueue?number=10
-
-helm upgrade --install my-release prometheus-community/prometheus-adapter -f values.yaml -n monitoring
-
-helm upgrade --install prometheus-test prometheus-community/prometheus -f prometheus-values.yaml -n monitoring
-
-
-buildqueuemonitoring.monitoring.svc.cluster.local:80
-
-prometheus-test-server.monitoring.svc.cluster.local
-
-k exec -it prometheus-server-766649cb7-lgc8p -c prometheus-server /bin/sh
-
-http://prometheus.monitoring.svc:80/api/v1/series?match%5B%5D=jobs_in_queue_total%7Bkubernetes_namespace%21%3D%22%22%2Ckubernetes_pod_name%21%3D%22%22%7D&start=1630756921.99
+# get the api result for the custom metric
+kubectl get --raw /apis/external.metrics.k8s.io/v1beta1/namespaces/monitoring/jobs_in_queue_total | jq
