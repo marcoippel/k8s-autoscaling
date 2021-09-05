@@ -28,7 +28,7 @@ spec:
         static_configs:
           - targets: ['buildqueuemonitoring.monitoring.svc:80']
             labels:
-              service: '1'
+              kubernetes_namespace: 'monitoring'
         relabel_configs:
         - action: replace
           source_labels:
