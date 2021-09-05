@@ -29,8 +29,3 @@ spec:
           - targets: ['buildqueuemonitoring.monitoring.svc:80']
             labels:
               kubernetes_namespace: 'monitoring'
-        relabel_configs:
-        - action: replace
-          source_labels:
-          - __meta_kubernetes_namespace
-          target_label: kubernetes_namespace
