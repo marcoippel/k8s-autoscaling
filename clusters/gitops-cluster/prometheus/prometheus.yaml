@@ -28,4 +28,4 @@ spec:
         static_configs:
           - targets: ['buildqueuemonitoring.monitoring.svc:80']
             labels:
-              kubernetes_namespace: 'monitoring'
+              kubernetes_namespace: 'buildagentpool-team-a'
