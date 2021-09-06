@@ -76,4 +76,4 @@ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 
 # get the api result for the custom metric
-kubectl get --raw /apis/external.metrics.k8s.io/v1beta1/namespaces/monitoring/jobs_in_queue_total | jq
+kubectl get --raw /apis/external.metrics.k8s.io/v1beta1/namespaces/buildagentpool-team-a/jobs_in_queue_total | jq
