@@ -6,9 +6,9 @@ cluster. By default Kubernetes can scale on CPU and memory usage but there are a
 ![Overview](https://raw.githubusercontent.com/marcoippel/k8s-autoscaling/main/Images/K8S%20AutoScaling.png)
 
 
-## Components
+### Components
 
-## Buildqueue monitoring
+#### Buildqueue monitoring
 The solution starts with an application called [Buildqueue monitoring](https://github.com/marcoippel/k8s-autoscaling/tree/main/src/BuildQueueMonitoring). This is a web-api written in C# which monitors the build queue of a specific buildagent pool. The count of jobs that are queued are added to a metric that can be scraped by prometheus.
 
 The amount of builds queued in the queue is checked when Prometheus calls the endpoint /metrics I created a middleware extension. 
