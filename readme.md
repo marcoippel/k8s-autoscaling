@@ -21,3 +21,5 @@ I add the value of the queued builds to a gauge metric which looks like this
 //TODO Image add metrics
 
 ![Overview](https://raw.githubusercontent.com/marcoippel/k8s-autoscaling/main/Images/middleware-extension.png)
+
+//Todo How to install the buildagent monitoring
