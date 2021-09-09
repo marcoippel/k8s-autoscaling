@@ -21,14 +21,6 @@ RUN pwsh -c "Install-Module -Name Az -Force"
 # Install azure cli
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
-# Install mssql-tools
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | tee /etc/apt/sources.list.d/msprod.list && \
-    apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
-
-ENV PATH="$PATH:/opt/mssql-tools/bin"
-
 WORKDIR /azp
 
 COPY ./start.sh .
