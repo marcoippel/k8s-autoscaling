@@ -1,7 +1,12 @@
-## Introduction
+## Azure DevOps scalable build agent pool on Kubernetes 
 
-In this article I'm gona describe how to host a scaleable private agent pool for Azure Devops. Most of the time you will use the hosted agents provided by Microsoft. There are some cases that you want to use a private build agent or agents.  TODO: usecases when you want a private build agent pool. You can install an Azure devops agent on a virtual machine or on an Azure vm scaleset which is supported by default in Azure Devops. But if you want te be in control of the scaling and if you want a fast scaling solution you can host your buildagents on a Kubernetes 
-cluster. By default Kubernetes can scale on CPU and memory usage but there are also options to scale based on an external metric. For example on the count of builds in the queue of a Azure DevOps agent pool.
+In this article I'm gona describe how to host a scaleable private agent pool for Azure Devops. Most of the time you will use the hosted agents provided by Microsoft. There are some cases that you want to use a private build agent or agents.  
+
+TODO: usecases when you want a private build agent pool. You can install an Azure devops agent on a virtual machine or on an Azure vm scaleset which is supported by default in Azure Devops. 
+But if you want te be in control of the scaling and if you want a fast scaling solution you can host your buildagents on a Kubernetes 
+cluster. 
+
+By default Kubernetes can scale on CPU and memory usage but there are also options to scale based on an external metric. For example on the count of builds in the queue of a Azure DevOps agent pool.
 
 ![Overview](https://raw.githubusercontent.com/marcoippel/k8s-autoscaling/main/Images/K8S%20AutoScaling.png)
 
