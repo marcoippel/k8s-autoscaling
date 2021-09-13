@@ -1,0 +1,15 @@
+alertmanager:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
+pushgateway:
+  enabled: false
+extraScrapeConfigs: |
+  - job_name: 'buildqueuemonitoring'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['buildqueuemonitoring.buildagentpool-team-a.svc:80']
+        labels:
+          kubernetes_namespace: 'buildagentpool-team-a'

@@ -6,13 +6,11 @@ cluster. By default Kubernetes can scale on CPU and memory usage but there are a
 ![Overview](https://raw.githubusercontent.com/marcoippel/k8s-autoscaling/main/Images/K8S%20AutoScaling.png)
 
 
-### Components
+## Components
 
-#### Buildqueue monitoring
-##### What
+### Buildqueue monitoring
 The solution starts with an application called [Buildqueue monitoring](https://github.com/marcoippel/k8s-autoscaling/tree/main/src/BuildQueueMonitoring). This is a web-api written in C# which monitors the build queue of a specific buildagent pool. The count of jobs that are queued are added to a metric that can be scraped by prometheus.
 
-##### How does it work
 The amount of builds queued in the queue is checked when Prometheus calls the endpoint /metrics I created a middleware extension. 
 When prometheus scrapes the metrics the middleware is calling the api of Azure DevOps and gets the amount of build in the queue.
 The endpoint of the Azure Devops api is undocumented but it gets all the builds of the specified buildqueue. Builds that have no finishTime and also not receiveTime then it is queued. Builds that have no finishtime but there is a recieve time then the build is running. Builds that have a finish time these builds are finished.
@@ -80,5 +78,38 @@ You can install the buildqueue monitor by applying the resourse files:
 - BuildQueueMonitoring.yaml
 - BuildQueueMonitoring-service.yaml
 
-You need to install the buildqueue monitor in the same namespace as your buildagents will be installed. 
+You need to install the buildqueue monitor in the same namespace as your buildagents will be installed. This is because this way you can scale multiple agent pools for instance for multiple teams.
 
+
+
+### Prometheus
+Prometheus is a free software application used for event monitoring and alerting. It records real-time metrics in a time series database built using a HTTP pull model, with flexible queries and real-time alerting. "source: [wikipedia](https://en.wikipedia.org/wiki/Prometheus_(software))"
+
+Prometheus is used to scrape the metrics endpoint which is provided by the buildqueue monitoring application. Prometheus scrapes the endpoint and saves the data. 
+
+To install Prometheus you can install the helm chart 
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install [RELEASE_NAME] prometheus-community/prometheus -f Prometheus-values.yaml
+```
+
+An example of the value file used to install the Prometheus helm chart. 
+```yaml
+alertmanager:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
+pushgateway:
+  enabled: false
+extraScrapeConfigs: |
+  - job_name: 'buildqueuemonitoring'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['buildqueuemonitoring.buildagentpool-team-a.svc:80']
+        labels:
+          kubernetes_namespace: 'buildagentpool-team-a'
+```
+The scrape config adds the buildqueuemonitoring as a target to Prometheus. We add also a label called "kubernetes_namespace" with the value of the namespace where you installed the buildqueuemonitoring application.
