@@ -12,8 +12,6 @@ spec:
   minReplicas: 1
   maxReplicas: 3
   metrics:
-  # use a "Pods" metric, which takes the average of the
-  # given metric across all pods controlled by the autoscaling target
   - type: External
     external:
       metricName: jobs_in_queue_total
