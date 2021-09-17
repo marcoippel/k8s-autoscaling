@@ -1,0 +1,14 @@
+prometheus:
+  url: http://prometheus-server.monitoring.svc
+  port: 80
+rules:
+  default: false
+  external:
+  - seriesQuery: 'jobs_in_queue_total{kubernetes_namespace!=""}'
+    resources:
+      overrides:
+        kubernetes_namespace: {resource: "namespace"}
+    name:
+      matches: "jobs_in_queue_total"
+      as: "jobs_in_queue_total"
+    metricsQuery: 'ceil(sum(avg_over_time(<<.Series>>{<<.LabelMatchers>>}[2m])))'

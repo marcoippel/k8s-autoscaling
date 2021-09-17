@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  AZP_TOKEN: bHV0Nm41aHc3cXhtd3Nocno2c2NzZDRmYm9jN3gzcDZoZzVydHRkcnVrbjZlZHlyNGZ6cQ==
+kind: Secret
+metadata:
+  name: azuredevops-pat
+  namespace: default
