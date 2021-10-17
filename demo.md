@@ -30,7 +30,7 @@ kubectl create ns monitoring && \
 kubectl create ns buildagentpool-team-a
 ```
 
-### Install the prometheus components 
+### Install the prometheus components
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && \
 helm repo update && \
@@ -52,7 +52,7 @@ kubectl get --raw /apis/external.metrics.k8s.io/v1beta1/namespaces/buildagentpoo
 
 ### Query that is executed against Prometheus
 ```bash
-ceil(sum(avg_over_time(jobs_in_queue_total{kubernetes_namespace="buildagentpool-team-a"}[2m])))
+ceil(sum(avg_over_time(jobs_in_queue_total{kubernetes_namespace="buildagentpool-team-a"}[1m])))
 ```
 
 ### Enable the query logging in Prometheus
