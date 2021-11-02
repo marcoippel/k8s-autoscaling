@@ -18,6 +18,7 @@ type metric struct {
 func main() {
 	http.HandleFunc("/metrics", handler)
 
+	log.Print("Starting webserver on port: 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
@@ -25,7 +26,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	// Get the build id based on the name of the pool
 	adoPoolsJson := getAdoPools()
 	pools := parseAdoPools(adoPoolsJson)
+
 	poolName := os.Getenv("POOLNAME")
+	if poolName == "" {
+		log.Fatal("Environment variable poolName not found")
+	}
+
 	poolId, err := getPoolByName(pools, poolName)
 
 	if err != nil {
@@ -84,26 +90,32 @@ func parseAdoPools(adoPoolJson []byte) AdoPools {
 }
 
 func getBuilds(poolId int64) []byte {
-	resp, error := callAdoUrl(fmt.Sprintf("https://dev.azure.com/Marcoippel/_settings/agentpools?poolId=%d&__rt=fps&__ver=2", poolId))
+	url := fmt.Sprintf("https://dev.azure.com/Marcoippel/_settings/agentpools?poolId=%d&__rt=fps&__ver=2", poolId)
+	resp, error := callAdoUrl(url)
 
 	if error != nil {
 		log.Print(error)
 	}
 
 	if resp.StatusCode != 200 {
-		log.Print("There was an error", resp.StatusCode)
+		log.Printf("There was an error calling the %s : %d", url, resp.StatusCode)
 	}
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		log.Print("There was an error", err)
+		log.Print("There was an error reading the body: ", err)
 	}
 	return bodyBytes
 }
 
 func getAdoPools() []byte {
-	resp, error := callAdoUrl(fmt.Sprintf("https://dev.azure.com/%s/_apis/distributedtask/pools?api-version=6.0", os.Getenv("ADOORGANISATION")))
+	adoOrganisation := os.Getenv("ADOORGANISATION")
+	if adoOrganisation == "" {
+		log.Fatal("Environment variable ADOORGANISATION not found")
+	}
+
+	resp, error := callAdoUrl(fmt.Sprintf("https://dev.azure.com/%s/_apis/distributedtask/pools?api-version=6.0", adoOrganisation))
 
 	if error != nil {
 		log.Print(error)
@@ -124,7 +136,13 @@ func getAdoPools() []byte {
 func callAdoUrl(url string) (resp *http.Response, err error) {
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
-	req.SetBasicAuth("", os.Getenv("ADOPAT"))
+
+	adoPat := os.Getenv("ADOPAT")
+	if adoPat == "" {
+		log.Fatal("Environment variable ADOPAT not found")
+	}
+
+	req.SetBasicAuth("", adoPat)
 	return client.Do(req)
 }
 
