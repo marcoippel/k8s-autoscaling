@@ -2,6 +2,6 @@ FROM golang:1.17
 
 WORKDIR /app
 
-COPY ./GoBuildQueueMonitor .
+COPY ./cmd/buildqueuemonitor .
 
-ENTRYPOINT [ "./GoBuildQueueMonitor" ]
+ENTRYPOINT [ "./buildqueuemonitor" ]
