@@ -26,6 +26,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	poolName := getEnvVar("POOLNAME")
 	adoPat := getEnvVar("ADOPAT")
 
+	if adoOrganisation == "" || poolName == "" || adoPat == "" {
+		w.WriteHeader(500)
+		w.Write([]byte("500 - Something bad happened!"))
+		return
+	}
+
 	provider := Ado.NewProvider(adoPat, adoOrganisation, poolName)
 	poolId := provider.GetPoolByName(poolName)
 
@@ -43,7 +49,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func getEnvVar(name string) string {
 	value := os.Getenv(name)
 	if value == "" {
-		log.Fatalf("Environment variable %s not found", name)
+		log.Printf("Environment variable %s not found", name)
 	}
 	return value
 }
