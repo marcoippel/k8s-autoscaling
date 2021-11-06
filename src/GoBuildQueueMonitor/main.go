@@ -22,9 +22,9 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	adoOrganisation := getEnvVar("ADOORGANISATION")
-	poolName := getEnvVar("POOLNAME")
-	adoPat := getEnvVar("ADOPAT")
+	adoOrganisation := getEnvVar("ADO_ORGANIZATION")
+	poolName := getEnvVar("ADO_POOLNAME")
+	adoPat := getEnvVar("ADO_PAT")
 
 	if adoOrganisation == "" || poolName == "" || adoPat == "" {
 		w.WriteHeader(500)
