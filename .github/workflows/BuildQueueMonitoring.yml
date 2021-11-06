@@ -18,7 +18,7 @@ jobs:
       projectLower: buildqueuemonitoring
     defaults:
       run:
-        working-directory: ./src/BuildQueueMonitoring
+        working-directory: ./src/GoBuildQueueMonitor
 
     steps:
       - name: Checkout
