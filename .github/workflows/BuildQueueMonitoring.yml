@@ -14,8 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      project: BuildQueueMonitoring
-      projectLower: buildqueuemonitoring
+      project: GoBuildQueueMonitor
+      projectLower: gobuildqueuemonitor
     defaults:
       run:
         working-directory: ./src/GoBuildQueueMonitor
