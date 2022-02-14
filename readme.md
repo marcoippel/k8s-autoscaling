@@ -8,7 +8,7 @@ cluster.
 
 By default Kubernetes can scale on CPU and memory usage but there are also options to scale based on an external metric. For example on the count of builds in the queue of a Azure DevOps agent pool.
 
-![Overview](/images/K8S%20AutoScaling.png)
+![Overview](/images/autoscaling-Overview.png)
 
 
 ## Components
